@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+	<title>Cadastro Passagem</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" type="image/png" href="../../IMG/LogoNegativo.png"/>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+		integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/Passagem.css">
+</head>
+
+<body>
+	<div class="section">
+		<!-- INÍCIO BARRA DE NAVEGAÇÃO -->
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+				<div class="container-fluid">
+					<div>
+						<img src="../../IMG/Logo.png" width="250px" height="120px">
+					</div>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+						data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+						<div class="navbar-nav">
+							<a class="nav-link" href="../">Home</a>
+							<a class="nav-link" href="../passageiro">Cadastro</a>
+							<a class="nav-link" href="../destino">Destino</a>
+                            <a class="nav-link" href="../promocao">Promoções</a>
+                            <a class="nav-link" href="../voo">Voos</a>
+							<a class="nav-link" href="../hotel">Hotéis</a>
+							<a class="nav-link active" aria-current="page" href="../passagem">Passagem</a>
+                            <a class="nav-link" href="../contato">Contato</a>
+                            <a class="nav-link" href="../sobre">Sobre</a>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<!-- FIM BARRA DE NAVEGAÇÃO -->
+		<!-- INÍCIO DO BANNER -->
+		<div class="position-relative overflow-hidden md-1 md-1">
+			<img src="../../IMG/Voo.jpg" style="height: 750px; width: 100%;">
+		</div>
+		<!-- FIM DO BANNER -->
+		<!--INICIO LISTAGEM -->
+		<main class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<h1>Listagem de Passagens</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Nome</th>
+								<th scope="col">Local de Origem</th>
+								<th scope="col">Local de Destino</th>
+								<th scope="col">Data Viagem de Ida</th>
+								<th scope="col">Data Viagem de Volta</th>
+								<th scope="col">Controle</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="passagem : ${passagens}">
+								<th scope="row" th:text="${passagem.idPassagem}"></th>
+								<td>
+									<a th:text="${passagem.nome}"
+										th:href="@{/passagem/{idPassagem} (idPassagem=${passagem.idPassagem})}"></a>
+								</td>
+								<td th:text="${passagem.nomeLocalOrigem}"></td>
+								<td th:text="${passagem.nomeLocalDestino}"></td>
+								<td th:text="${passagem.dataViagemIda}"></td>
+								<td th:text="${passagem.dataViagemVolta}"></td>
+								<td>
+									<a th:href="@{/passagem/{idPassagem}/editar (idPassagem=${passagem.idPassagem})}"
+										class="btn btn-warning">
+										Editar
+									</a>
+									<a th:href="@{/passagem/{idPassagem}/excluir (idPassagem=${passagem.idPassagem})}"
+										class="btn btn-danger"
+										onclick="return confirm('Tem certeza que deseja excluir o passageiro?');">
+										Excluir
+									</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<a th:href="@{/passagem/cadastrar}" class="btn btn-primary">Cadastrar nova Passagem</a>
+					<a th:href="@{/agradecimento}" class="btn btn-warning text-light">Confirme!</a>
+				</div>
+			</div>
+			</div>
+		</main>
+	</div>
+	<!-- FIM DO LISTAGEM -->
+	<!-- INÍCIO DO FOOTER -->
+	<footer class="pt-4 my-md-0 pt-md-2 border-top bg-warning">
+		<div class="row">
+			<div class="col-6 m-lg-auto col-md">
+				<img src="../../IMG/Logo (laranja).png" width="240px" height="140px">
+			</div>
+			<div class="col-6 col-md">
+				<h5 class="sky">SKYTOUR</h5>
+				<ul class="list-unstyled text-small">
+					<li class="mb-1"><a class="link-secondary text-decoration-none" href="../">Home</a>
+					</li>
+					<li class="mb-1"><a class="link-secondary text-decoration-none"
+							href="../passageiro">Cadastro</a></li>
+					<li class="mb-1"><a class="link-secondary text-decoration-none"
+							href="../destino">Destino</a></li>
+					<li class="mb-1"><a class="link-secondary text-decoration-none"
+							href="../contato">Contato</a></li>
+					<li class="mb-1"><a class="link-secondary text-decoration-none"
+							href="../sobre">Sobre</a></li>		
+				</ul>
+			</div>
+		</div>
+	</footer>
+	<!-- FIM DO FOOTER -->
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+		integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+		integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+		crossorigin="anonymous"></script>
+	</div>
+</body>
+
+</html>
